@@ -1,14 +1,15 @@
-import { Duration, RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
-import * as sns from "aws-cdk-lib/aws-sns";
-import * as subs from "aws-cdk-lib/aws-sns-subscriptions";
-import * as sqs from "aws-cdk-lib/aws-sqs";
-import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
+import { RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
 
+import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 import { Construct } from "constructs";
 
 export class CdkTypescriptSampleStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
-    super(scope, id, props);
+    const stackProps: StackProps = {
+      description: "This is the first stack.",
+    };
+
+    super(scope, id, stackProps);
 
     const table = new dynamodb.Table(this, "MyTable", {
       partitionKey: {
